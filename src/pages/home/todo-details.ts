@@ -5,9 +5,9 @@ import {NavParams} from "ionic-angular";
   templateUrl: 'todo-details.html',
 })
 export class TodoDetailsPage {
-  item:any;
+  todo:any;
 
   constructor(params: NavParams) {
-    this.item = params.data.item;
+    this.todo = params.data.todo;
   }
 }

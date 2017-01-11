@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import {NavController} from 'ionic-angular';
 import {TodoDetailsPage} from "./todo-details";
+import {Todo} from './todo.service';
 
 @Component({
   selector: 'page-home',
@@ -9,97 +10,69 @@ import {TodoDetailsPage} from "./todo-details";
 })
 export class HomePage {
 
-  items = [];
+  todolist:Todo[]= [];
 
 
   constructor(public navCtrl: NavController) {
 
-    this.items = [
-      {
-        'title': 'Angular',
-        'icon': 'angular',
-        'description': 'A powerful Javascript framework for building single page apps. Angular is open source, and maintained by Google.',
-        'color': '#E63135'
-      },
-      {
-        'title': 'CSS3',
-        'icon': 'css3',
-        'description': 'The latest version of cascading stylesheets - the styling language of the web!',
-        'color': '#0CA9EA'
-      },
-      {
-        'title': 'HTML5',
-        'icon': 'html5',
-        'description': 'The latest version of the web\'s markup language.',
-        'color': '#F46529'
-      },
-      {
-        'title': 'JavaScript',
-        'icon': 'javascript',
-        'description': 'One of the most popular programming languages on the Web!',
-        'color': '#FFD439'
-      },
-      {
-        'title': 'Sass',
-        'icon': 'sass',
-        'description': 'Syntactically Awesome Stylesheets - a mature, stable, and powerful professional grade CSS extension.',
-        'color': '#CE6296'
-      },
-      {
-        'title': 'NodeJS',
-        'icon': 'nodejs',
-        'description': 'An open-source, cross-platform runtime environment for developing server-side Web applications.',
-        'color': '#78BD43'
-      },
-      {
-        'title': 'Python',
-        'icon': 'python',
-        'description': 'A clear and powerful object-oriented programming language!',
-        'color': '#3575AC'
-      },
-      {
-        'title': 'Markdown',
-        'icon': 'markdown',
-        'description': 'A super simple way to add formatting like headers, bold, bulleted lists, and so on to plain text.',
-        'color': '#412159'
-      },
-      {
-        'title': 'Tux',
-        'icon': 'tux',
-        'description': 'The official mascot of the Linux kernel!',
-        'color': '#000'
-      },
-      {
-        'title': 'Markdown',
-        'icon': 'markdown',
-        'description': 'A super simple way to add formatting like headers, bold, bulleted lists, and so on to plain text.',
-        'color': '#412159'
-      },
-      {
-        'title': 'Tux',
-        'icon': 'tux',
-        'description': 'The official mascot of the Linux kernel!',
-        'color': '#000'
-      },
-      {
-        'title': 'Markdown',
-        'icon': 'markdown',
-        'description': 'A super simple way to add formatting like headers, bold, bulleted lists, and so on to plain text.',
-        'color': '#412159'
-      },
-      {
-        'title': 'Tux',
-        'icon': 'tux',
-        'description': 'The official mascot of the Linux kernel!',
-        'color': '#000'
-      }
-    ]
+    this.todolist=[
+        {
+            "approvable":false,
+            "assignee":[
+                "10003765"
+            ],
+            "assigneeMap":{
+                "10003765":"陈武军"
+            },
+            "assigneeName":"陈武军",
+            "processDefinitionId":"computerApp:2:4804",
+            "processInstanceId":"286732",
+            "processName":"笔记本电脑申请",
+            "startTime":1480486093000,
+            "startTimeString":"2016-11-30",
+            "starterId":"10003765",
+            "starterName":"陈武军",
+            "summary":"申请人：陈武军 所属部门：产品测试部 工作岗位：副经理 入职日期：2016-07-01 采购提供品牌：21212 采购建议价格：8,900.00",
+            "taskId":"287610",
+            "taskKey":"usertask17",
+            "taskName":"修改申请"
+        },
+        {
+            "approvable":false,
+            "assignee":[
+                "10003765"
+            ],
+            "assigneeMap":{
+                "10003765":"陈武军"
+            },
+            "assigneeName":"陈武军",
+            "processDefinitionId":"socialRemote:1:96",
+            "processInstanceId":"287539",
+            "processName":"异地缴交社保/公积金申请",
+            "startTime":1480475432000,
+            "startTimeString":"2016-11-30",
+            "starterId":"10003765",
+            "starterName":"陈武军",
+            "summary":"申请人：陈武军 所属部门：产品测试部 工作岗位：副经理 申请缴交城市：安徽安庆 ",
+            "taskId":"287543",
+            "taskKey":"usertask10",
+            "taskName":"提交新申请"
+    }]
+
   }
 
-  openNavDetailsPage(item) {
+  openNavDetailsPage(todo) {
     // console.log(item);
-    this.navCtrl.push(TodoDetailsPage, { item: item });
+    this.navCtrl.push(TodoDetailsPage, { todo: todo });
   }
 
+  doRefresh(refresher){
+    console.log('Begin async operation', refresher);
+
+    // 这边换成请求数据，请求成功后必须要有，refresher.complete();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);  }
 
 }
