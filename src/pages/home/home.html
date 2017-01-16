@@ -15,12 +15,13 @@
 
   <ion-list>
     <button ion-item *ngFor="let todo of todolist" (click)="openNavDetailsPage(todo)">
-      {{ todo.processName }}
+      <h3>{{ todo.processName }}</h3>
+      <p>
+        {{todo.starterName}} &mdash;
+        {{todo.startTimeString}}
+      </p>
     </button>
   </ion-list>
-
-
-
 
 
 </ion-content>
