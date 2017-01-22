@@ -1,9 +1,24 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar no-border-bottom>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>代办任务</ion-title>
+
+    <ion-segment [(ngModel)]="type">
+      <ion-segment-button value="myApprove">
+        待我审批
+      </ion-segment-button>
+      <ion-segment-button value="myAdd">
+        我申请的
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="processList()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
@@ -13,15 +28,24 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list>
-    <button ion-item *ngFor="let todo of todolist" (click)="openNavDetailsPage(todo)">
-      <h3>{{ todo.processName }}</h3>
-      <p>
-        {{todo.starterName}} &mdash;
-        {{todo.startTimeString}}
-      </p>
-    </button>
-  </ion-list>
+  <div [ngSwitch]="type">
+    <ion-list *ngSwitchCase="'myApprove'">
+      <button ion-item *ngFor="let todo of todolist" (click)="openNavDetailsPage(todo)">
+        <h3>{{ todo.processName }}</h3>
+        <p>
+          {{todo.starterName}} &mdash;
+          {{todo.startTimeString}}
+        </p>
+      </button>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'myAdd'">
+      <button ion-item *ngFor="let todo of todolist" (click)="openNavDetailsPage(todo)">
+        <h3>{{ todo.processName }}</h3>
+
+      </button>
+    </ion-list>
+  </div>
 
 
 </ion-content>

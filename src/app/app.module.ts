@@ -6,6 +6,8 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import {TodoDetailsPage} from "../pages/home/todo-details";
+import {ProcessListPage} from "../pages/home/processlist";
+import {HRPAGES} from "../pages/hr/index";
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import {TodoDetailsPage} from "../pages/home/todo-details";
     ContactPage,
     HomePage,
     TabsPage,
-    TodoDetailsPage
+    TodoDetailsPage,
+    ProcessListPage,
+    HRPAGES
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,7 +30,9 @@ import {TodoDetailsPage} from "../pages/home/todo-details";
     ContactPage,
     HomePage,
     TabsPage,
-    TodoDetailsPage
+    TodoDetailsPage,
+    ProcessListPage,
+    HRPAGES
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

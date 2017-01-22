@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
-import {NavController} from 'ionic-angular';
+import {NavController, PopoverController} from 'ionic-angular';
 import {TodoDetailsPage} from "./todo-details";
 import {Todo, TodoService} from './todo.service';
+import {ProcessListPage} from "./processlist";
 
 @Component({
   selector: 'page-home',
@@ -11,19 +12,37 @@ import {Todo, TodoService} from './todo.service';
 })
 export class HomePage {
 
+  type: string = "myApprove"; // 审批类型: 待我审批/我申请的
+
   todolist:Todo[]= [];
 
 
-  constructor(public navCtrl: NavController,private todoService:TodoService) {
+  constructor(public navCtrl: NavController,private todoService:TodoService, public popoverCtrl: PopoverController) {
 
     this.todolist= todoService.getTodoList();
 
   }
 
+  /**
+   * 跳转到流程列表页
+   */
+  processList(){
+    this.navCtrl.push(ProcessListPage);
+
+  }
+
+  /**
+   * 跳转到流程审批详细页
+   * @param todo
+   */
   openNavDetailsPage(todo) {
     this.navCtrl.push(TodoDetailsPage, { todo: todo });
   }
 
+  /**
+   * 下拉刷新
+   * @param refresher
+   */
   doRefresh(refresher){
     console.log('Begin async operation', refresher);
 
@@ -31,6 +50,8 @@ export class HomePage {
     setTimeout(() => {
       console.log('Async operation has ended');
       refresher.complete();
-    }, 2000);  }
+    }, 2000);
+  }
+
 
 }
