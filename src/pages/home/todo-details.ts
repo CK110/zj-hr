@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {NavParams} from "ionic-angular";
+import {NavParams, ViewController} from "ionic-angular";
 
 @Component({
   templateUrl: 'todo-details.html',
@@ -7,7 +7,15 @@ import {NavParams} from "ionic-angular";
 export class TodoDetailsPage {
   todo:any;
 
-  constructor(params: NavParams) {
+  constructor(params: NavParams,public viewCtrl: ViewController) {
     this.todo = params.data.todo;
+  }
+
+  cancel(){
+    this.viewCtrl.dismiss();
+  }
+
+  submit(approve){
+
   }
 }

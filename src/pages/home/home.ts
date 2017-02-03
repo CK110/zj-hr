@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import {NavController, PopoverController} from 'ionic-angular';
+import {NavController, PopoverController, ModalController} from 'ionic-angular';
 import {TodoDetailsPage} from "./todo-details";
 import {Todo, TodoService} from './todo.service';
 import {ProcessListPage} from "./processlist";
@@ -17,7 +17,8 @@ export class HomePage {
   todolist:Todo[]= [];
 
 
-  constructor(public navCtrl: NavController,private todoService:TodoService, public popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController,private todoService:TodoService,
+              public popoverCtrl: PopoverController,public modalCtrl: ModalController) {
 
     this.todolist= todoService.getTodoList();
 
@@ -36,7 +37,11 @@ export class HomePage {
    * @param todo
    */
   openNavDetailsPage(todo) {
-    this.navCtrl.push(TodoDetailsPage, { todo: todo });
+    // this.navCtrl.push(TodoDetailsPage, { todo: todo });
+
+    let modal = this.modalCtrl.create(TodoDetailsPage, { todo: todo });
+    modal.present();
+
   }
 
   /**
