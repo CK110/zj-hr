@@ -9,6 +9,9 @@ import {TodoDetailsPage} from "../pages/home/todo-details";
 import {ProcessListPage} from "../pages/home/processlist";
 import {HRPAGES} from "../pages/hr/index";
 
+import { Storage } from '@ionic/storage';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -34,6 +37,9 @@ import {HRPAGES} from "../pages/hr/index";
     ProcessListPage,
     HRPAGES
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Storage
+  ]
 })
 export class AppModule {}
