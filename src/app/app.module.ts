@@ -7,7 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import {TodoDetailsPage} from "../pages/home/todo-details";
 import {ProcessListPage} from "../pages/home/processlist";
+
 import {HRPAGES} from "../pages/hr/index";
+import {COMMONPAGES} from "../pages/common/index";
 
 import { Storage } from '@ionic/storage';
 
@@ -21,7 +23,8 @@ import { Storage } from '@ionic/storage';
     TabsPage,
     TodoDetailsPage,
     ProcessListPage,
-    HRPAGES
+    HRPAGES,
+    COMMONPAGES
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -35,7 +38,8 @@ import { Storage } from '@ionic/storage';
     TabsPage,
     TodoDetailsPage,
     ProcessListPage,
-    HRPAGES
+    HRPAGES,
+    COMMONPAGES
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
