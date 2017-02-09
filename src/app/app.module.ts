@@ -13,6 +13,9 @@ import {COMMONPAGES} from "../pages/common/index";
 
 import { Storage } from '@ionic/storage';
 
+var config = {
+  statusbarPadding: true
+}
 
 @NgModule({
   declarations: [
@@ -27,7 +30,7 @@ import { Storage } from '@ionic/storage';
     COMMONPAGES
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -1,23 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from 'ionic-angular';
-// import {AddContractPage} from "../hr/personnel/contract/add/addcontract";
+import {ModalController, NavController} from 'ionic-angular';
 import {SelectUserPage} from "../common/selectuser";
 @Component({
     templateUrl: 'processlist.html'
 })
 export class ProcessListPage implements OnInit {
-    constructor(public modalCtrl: ModalController) { }
+    constructor(public modalCtrl: ModalController, public navCtrl: NavController) { }
 
     ngOnInit() { }
 
 
 
     toAddPage(name){
-      // if(name =='contract'){
-      //     let modal = this.modalCtrl.create(AddContractPage,{ userId: 123456 });
-        let modal = this.modalCtrl.create(SelectUserPage,{ userId: 123456 }); // adduserid
 
-        modal.present();
+
+      let modal = this.modalCtrl.create(SelectUserPage,{ userId: 123456 }); // adduserid
+      modal.present();
+
+      // if(name =='contract'){
+        //let modal = this.modalCtrl.create(SelectUserPage,{ userId: 123456 }); // adduserid
+        // let modal = this.modalCtrl.create(NavigationModal,{ userId: 123456 }); // adduserid
+        // modal.present();
       // }
     }
 

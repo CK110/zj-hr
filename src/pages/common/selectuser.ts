@@ -87,8 +87,11 @@ export class SelectUserPage implements OnInit{
    */
   toAddPage(){
     console.log('toAddPAGE');
-    this.navCtrl.push(AddContractPage);
 
+    this.navCtrl.push(AddContractPage).then(() => {
+      const index = this.viewCtrl.index;
+      this.navCtrl.remove(index);
+    })
   }
 
 }
