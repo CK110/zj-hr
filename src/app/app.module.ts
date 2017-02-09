@@ -12,6 +12,9 @@ import {HRPAGES} from "../pages/hr/index";
 import {COMMONPAGES} from "../pages/common/index";
 
 import { Storage } from '@ionic/storage';
+import {TutorialPage} from "../pages/tutorial/tutorial";
+import {UserData} from "../providers/userdata";
+import {LoginPage} from "../pages/login/login";
 
 var config = {
   statusbarPadding: true
@@ -27,7 +30,9 @@ var config = {
     TodoDetailsPage,
     ProcessListPage,
     HRPAGES,
-    COMMONPAGES
+    COMMONPAGES,
+    TutorialPage,
+    LoginPage
   ],
   imports: [
     IonicModule.forRoot(MyApp,config)
@@ -42,11 +47,14 @@ var config = {
     TodoDetailsPage,
     ProcessListPage,
     HRPAGES,
-    COMMONPAGES
+    COMMONPAGES,
+    TutorialPage,
+    LoginPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Storage
+    Storage,
+    UserData
   ]
 })
 export class AppModule {}
