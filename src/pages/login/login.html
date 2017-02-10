@@ -1,21 +1,16 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>登录</ion-title>
-  </ion-navbar>
+
 </ion-header>
 
 <ion-content>
   <div class="logo">
-    <img src="assets/img/appicon.svg" alt="Ionic logo">
+      <img src="assets/img/appicon.svg" alt="Ionic logo">
   </div>
 
-
-  <form #loginForm="ngForm">
-  <!--<form #loginForm="ngForm" novalidate>-->
+  <form #loginForm="ngForm" novalidate>
     <ion-list no-lines>
       <ion-item>
-        <ion-label stacked color="primary">用户名</ion-label>
-        <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+        <ion-input  placeholder="用户名" [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
                    required>
         </ion-input>
       </ion-item>
@@ -24,8 +19,7 @@
       <!--</p>-->
 
       <ion-item>
-        <ion-label stacked color="primary">密码</ion-label>
-        <ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
+        <ion-input  placeholder="密码" [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
         </ion-input>
       </ion-item>
       <!--<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>-->
