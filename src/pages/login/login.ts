@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams, MenuController} from 'ionic-angular';
-import {NgForm} from "@angular/forms";
+import {NavController, NavParams, MenuController, LoadingController} from 'ionic-angular';
+import {NgForm, FormBuilder, Validators, FormGroup} from "@angular/forms";
 import {UserData} from "../../providers/userdata";
 import {TabsPage} from "../tabs/tabs";
 
@@ -10,24 +10,36 @@ import {TabsPage} from "../tabs/tabs";
 })
 export class LoginPage {
 
-  login: {username?: string, password?: string} = {};
-  submitted = false;
+  loginForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public userData: UserData,
-              public menu: MenuController) {
+  constructor(
+    public navCtrl: NavController,
+    public userData: UserData,
+    public menu: MenuController,
+    public loadingCtrl: LoadingController,
+    private formBuilder: FormBuilder) {
+
+      this.loginForm = this.formBuilder.group({
+        username: ['', Validators.required],
+        password: ['',Validators.required],
+      });
   }
 
-  onLogin(form: NgForm) {
-    this.submitted = true;
+  onLogin() {
+    let loading = this.loadingCtrl.create({
+      content: '请稍后...'
+    });
 
-    if (form.valid) {
-      this.userData.login(this.login.username);
-      this.navCtrl.push(TabsPage);
-    }
-  }
+    loading.present();
 
-  onSignup() {
-    // this.navCtrl.push(SignupPage);
+    setTimeout(()=>{
+
+      loading.dismiss().then(()=>{
+        // this.userData.login(this.login.username);
+        this.navCtrl.push(TabsPage);
+      });
+
+    },3000)
   }
 
 }

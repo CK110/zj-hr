@@ -7,33 +7,22 @@
       <img src="assets/img/appicon.svg" alt="Ionic logo">
   </div>
 
-  <form #loginForm="ngForm" novalidate>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <ion-list no-lines>
-      <ion-item>
-        <ion-input  placeholder="用户名" [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
-                   required>
-        </ion-input>
-      </ion-item>
-      <!--<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>-->
-        <!--用户名必填-->
-      <!--</p>-->
 
       <ion-item>
-        <ion-input  placeholder="密码" [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
+        <ion-input type="text" formControlName="username" placeholder="用户名" spellcheck="false" autocapitalize="off"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" formControlName="password" placeholder="密码" >
         </ion-input>
       </ion-item>
-      <!--<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>-->
-        <!--密码必填-->
-      <!--</p>-->
     </ion-list>
 
     <ion-row responsive-sm>
       <ion-col>
-        <button ion-button (click)="onLogin(loginForm)" type="submit" block>登录</button>
+        <button ion-button type="submit" [disabled]="!loginForm.valid" block>登录</button>
       </ion-col>
-      <!--<ion-col>-->
-        <!--<button ion-button (click)="onSignup()" color="light" block>注册</button>-->
-      <!--</ion-col>-->
     </ion-row>
   </form>
 
