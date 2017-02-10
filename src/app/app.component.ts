@@ -37,6 +37,7 @@ export class MyApp {
       } else {
         this.rootPage = TutorialPage;
       }
+      this.platformReady();
     })
   }
 

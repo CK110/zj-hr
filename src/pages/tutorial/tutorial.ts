@@ -28,16 +28,15 @@ export class TutorialPage {
     this.showSkip = !slider.isEnd();
   }
 
-  // ionViewDidEnter() {
-  //   // the root left menu should be disabled on the tutorial page
-  //   this.menu.enable(false);
-  // }
-  //
-  // ionViewDidLeave() {
-  //   // enable the root left menu when leaving the tutorial page
-  //   this.menu.enable(true);
-  // }
+  ionViewDidEnter() {
+    // the root left menu should be disabled on the tutorial page
+    this.menu.enable(false);
+  }
 
+  ionViewDidLeave() {
+    // enable the root left menu when leaving the tutorial page
+    this.menu.enable(true);
+  }
 
 
 }
