@@ -20,19 +20,23 @@ var config = {
   statusbarPadding: true
 }
 
+const OTHERPAGES=[
+  AboutPage,
+  ContactPage,
+  HomePage,
+  TabsPage,
+  TodoDetailsPage,
+  ProcessListPage,
+  TutorialPage,
+  LoginPage
+]
+
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage,
-    TodoDetailsPage,
-    ProcessListPage,
+    OTHERPAGES,
     HRPAGES,
-    COMMONPAGES,
-    TutorialPage,
-    LoginPage
+    COMMONPAGES
   ],
   imports: [
     IonicModule.forRoot(MyApp,config)
@@ -40,16 +44,9 @@ var config = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage,
-    TodoDetailsPage,
-    ProcessListPage,
+    OTHERPAGES,
     HRPAGES,
-    COMMONPAGES,
-    TutorialPage,
-    LoginPage
+    COMMONPAGES
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

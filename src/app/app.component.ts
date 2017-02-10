@@ -3,7 +3,7 @@ import {Platform, Nav} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { Storage } from '@ionic/storage';
 
-// import { TabsPage } from '../pages/tabs/tabs';
+import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from "../pages/tutorial/tutorial";
 import {UserData} from "../providers/userdata";
 import {LoginPage} from "../pages/login/login";
