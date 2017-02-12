@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {NavParams, ViewController, NavController, AlertController} from "ionic-angular";
+import {NavParams, ViewController, NavController, AlertController, LoadingController} from "ionic-angular";
 import { PhotoViewer } from 'ionic-native';
 import {HomePage} from "./home";
 
@@ -10,7 +10,11 @@ import {HomePage} from "./home";
 export class TodoDetailsPage {
   todo:any;
 
-  constructor(params: NavParams,public viewCtrl: ViewController,public navCtrl:NavController,public alertCtrl: AlertController ) {
+  constructor(params: NavParams,
+      public viewCtrl: ViewController,
+      public navCtrl:NavController, public alertCtrl: AlertController,
+      public loadingCtrl: LoadingController
+  ) {
     this.todo = params.data.todo;
   }
 
@@ -19,14 +23,19 @@ export class TodoDetailsPage {
   }
 
   submit(approve){
+    let loading = this.loadingCtrl.create({
+      content: '请稍后...'
+    });
 
-    this.navCtrl.push(HomePage).then(() => {
-      const index = this.viewCtrl.index;
-      this.navCtrl.remove(index);
-    })
+    loading.present();
 
-    // this.showAlert();
-    // this.viewCtrl.dismiss();
+    setTimeout(()=>{
+        loading.dismiss().then(()=>{
+          // this.userData.login(this.login.username);
+          this.navCtrl.pop()
+        });
+
+    },3000)
 
   }
 

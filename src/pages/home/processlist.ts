@@ -5,6 +5,7 @@ import {SelectUserPage} from "../common/selectuser";
     templateUrl: 'processlist.html'
 })
 export class ProcessListPage implements OnInit {
+
     constructor(public modalCtrl: ModalController, public navCtrl: NavController) { }
 
     ngOnInit() { }

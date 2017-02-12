@@ -37,10 +37,10 @@ export class HomePage {
    * @param todo
    */
   openNavDetailsPage(todo) {
-    // this.navCtrl.push(TodoDetailsPage, { todo: todo });
+    this.navCtrl.push(TodoDetailsPage, { todo: todo });
 
-    let modal = this.modalCtrl.create(TodoDetailsPage, { todo: todo });
-    modal.present();
+    // let modal = this.modalCtrl.create(TodoDetailsPage, { todo: todo });
+    // modal.present();
 
   }
 
