@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams, MenuController, LoadingController} from 'ionic-angular';
-import {NgForm, FormBuilder, Validators, FormGroup} from "@angular/forms";
+import {NavController, MenuController, LoadingController} from 'ionic-angular';
+import {FormBuilder, Validators, FormGroup} from "@angular/forms";
 import {UserData} from "../../providers/userdata";
 import {TabsPage} from "../tabs/tabs";
 
@@ -33,12 +33,12 @@ export class LoginPage {
     loading.present();
 
     setTimeout(()=>{
-
-      loading.dismiss().then(()=>{
-        // this.userData.login(this.login.username);
-        this.navCtrl.push(TabsPage);
-      });
-
+      if(this.loginForm.valid){
+        loading.dismiss().then(()=>{
+          // this.userData.login(this.login.username);
+          this.navCtrl.push(TabsPage);
+        });
+      }
     },3000)
   }
 
