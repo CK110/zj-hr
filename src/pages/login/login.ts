@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {NavController, MenuController, LoadingController} from 'ionic-angular';
+import {NavController, MenuController, LoadingController,AlertController} from 'ionic-angular';
 import {FormBuilder, Validators, FormGroup} from "@angular/forms";
 import {UserData} from "../../providers/userdata";
 import {TabsPage} from "../tabs/tabs";
+import {LoginService} from "./login.service";
 
 @Component({
   selector: 'page-login',
@@ -17,29 +18,56 @@ export class LoginPage {
     public userData: UserData,
     public menu: MenuController,
     public loadingCtrl: LoadingController,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    public loginService:LoginService,public alertCtrl: AlertController) {
 
       this.loginForm = this.formBuilder.group({
-        username: ['', Validators.required],
+        userid: ['', Validators.required],
         password: ['',Validators.required],
       });
   }
 
   onLogin() {
-    let loading = this.loadingCtrl.create({
-      content: '请稍后...'
-    });
+    if(this.loginForm.valid){
 
-    loading.present();
+      let loading = this.loadingCtrl.create({
+        content: '请稍后...'
+      });
 
-    setTimeout(()=>{
-      if(this.loginForm.valid){
-        loading.dismiss().then(()=>{
-          // this.userData.login(this.login.username);
-          this.navCtrl.push(TabsPage);
-        });
-      }
-    },3000)
+      loading.present();
+
+      this.loginService.login(this.loginForm.value).subscribe(data =>{
+        console.log(data.retMsg);
+        if(data.retMsg.code == 1){
+          loading.dismiss().then(()=>{
+            //登录信息存储到localStage
+            this.userData.loginSuccess(this.loginForm.value.username);
+            this.navCtrl.push(TabsPage);
+          });
+        }else{
+          let confirm = this.alertCtrl.create({
+            message: '账号/密码错误或账号密码组合错误。详情请查看帮助',
+            buttons: [
+              {
+                text: '取消',
+                handler: () => {
+                  console.log('点击取消');
+                }
+              },
+              {
+                text: '帮助',
+                handler: () => {
+                  console.log('点击帮助');
+                }
+              }
+            ]
+          });
+          loading.dismiss().then(()=>{
+            confirm.present();
+          });
+        }
+      })
+    }
   }
 
 }

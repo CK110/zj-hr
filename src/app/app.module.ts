@@ -15,6 +15,7 @@ import { Storage } from '@ionic/storage';
 import {TutorialPage} from "../pages/tutorial/tutorial";
 import {UserData} from "../providers/userdata";
 import {LoginPage} from "../pages/login/login";
+import {LoginService} from "../pages/login/login.service";
 
 var config = {
   statusbarPadding: true
@@ -51,7 +52,8 @@ const OTHERPAGES=[
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Storage,
-    UserData
-  ]
+    UserData,
+    LoginService
+]
 })
 export class AppModule {}

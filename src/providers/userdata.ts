@@ -28,20 +28,17 @@ export class UserData {
     });
   };
 
-  login(username: string) {
+  loginSuccess(username: string) {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.setUsername(username);
-    this.events.publish('user:login');
   };
 
   logout() {
     this.storage.remove(this.HAS_LOGGED_IN);
     this.storage.remove('username');
-    this.events.publish('user:logout');
   };
 
 
-  // return a promise
   hasLoggedIn() {
     return this.storage.get(this.HAS_LOGGED_IN).then((value) => {
       return value === true;

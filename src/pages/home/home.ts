@@ -14,15 +14,21 @@ export class HomePage {
 
   type: string = "myApprove"; // 审批类型: 待我审批/我申请的
 
-  todolist:Todo[]= [];
+  todolist:Todo[];
 
 
   constructor(public navCtrl: NavController,private todoService:TodoService,
               public popoverCtrl: PopoverController,public modalCtrl: ModalController) {
 
-    this.todolist= todoService.getTodoList();
+    this.todoService.getTodoList({}).subscribe( list=>{
+      console.log(list);
+      this.todolist=list;
+    })
 
   }
+
+
+
 
   /**
    * 跳转到流程列表页
