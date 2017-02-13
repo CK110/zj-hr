@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NavController, MenuController, Slides} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {LoginPage} from "../login/login";
+import {TabsPage} from "../tabs/tabs";
 
 
 @Component({
@@ -19,8 +20,16 @@ export class TutorialPage {
   ) { }
 
   startApp() {
-    this.navCtrl.push(LoginPage).then(() => {
-      this.storage.set('hasSeenTutorial', 'true');
+    this.storage.get('hasLoggedIn').then(hasLoggedIn=>{
+      let nextPage:any;
+      if(hasLoggedIn){
+        nextPage = TabsPage
+      }else{
+        nextPage = LoginPage
+      }
+      this.navCtrl.push(nextPage).then(() => {
+        this.storage.set('hasSeenTutorial', 'true');
+      })
     })
   }
 
