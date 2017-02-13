@@ -3,10 +3,10 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
+import { TodoPage} from '../pages/todo/todo';
 import { TabsPage } from '../pages/tabs/tabs';
-import {TodoDetailsPage} from "../pages/home/todo-details";
-import {ProcessListPage} from "../pages/home/processlist";
+import {TodoDetailsPage} from "../pages/todo/todo-details";
+import {ProcessListPage} from "../pages/todo/processlist";
 
 import {HRPAGES} from "../pages/hr/index";
 import {COMMONPAGES} from "../pages/common/index";
@@ -16,6 +16,7 @@ import {TutorialPage} from "../pages/tutorial/tutorial";
 import {UserData} from "../providers/userdata";
 import {LoginPage} from "../pages/login/login";
 import {LoginService} from "../pages/login/login.service";
+import {TodoService} from "../pages/todo/todo.service";
 
 var config = {
   statusbarPadding: true
@@ -24,7 +25,7 @@ var config = {
 const OTHERPAGES=[
   AboutPage,
   ContactPage,
-  HomePage,
+  TodoPage,
   TabsPage,
   TodoDetailsPage,
   ProcessListPage,
@@ -53,7 +54,8 @@ const OTHERPAGES=[
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Storage,
     UserData,
-    LoginService
+    LoginService,
+    TodoService
 ]
 })
 export class AppModule {}

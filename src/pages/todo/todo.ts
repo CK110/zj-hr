@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 
-import {NavController, PopoverController, ModalController} from 'ionic-angular';
+import {NavController, PopoverController, ModalController, NavParams} from 'ionic-angular';
 import {TodoDetailsPage} from "./todo-details";
 import {Todo, TodoService} from './todo.service';
 import {ProcessListPage} from "./processlist";
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
-  providers:[TodoService]
+  selector: 'page-todo',
+  templateUrl: 'todo.html',
 })
-export class HomePage {
+export class TodoPage {
 
   type: string = "myApprove"; // 审批类型: 待我审批/我申请的
 
@@ -18,12 +17,15 @@ export class HomePage {
 
 
   constructor(public navCtrl: NavController,private todoService:TodoService,
-              public popoverCtrl: PopoverController,public modalCtrl: ModalController) {
+              public popoverCtrl: PopoverController,public modalCtrl: ModalController,private navParams: NavParams) {
 
     this.todoService.getTodoList({}).subscribe( list=>{
       console.log(list);
       this.todolist=list;
     })
+
+    // console.log(navParams.get('todolist'))
+    // this.todolist= navParams.get('todolist');
 
   }
 

@@ -1,8 +1,6 @@
 import {Component} from "@angular/core";
 import {NavParams, ViewController, NavController, AlertController, LoadingController} from "ionic-angular";
 import { PhotoViewer } from 'ionic-native';
-import {HomePage} from "./home";
-
 
 @Component({
   templateUrl: 'todo-details.html',

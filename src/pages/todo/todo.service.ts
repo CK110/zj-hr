@@ -28,10 +28,13 @@ export class TodoService {
     constructor(private http:Http) { }
 
 
-    getTodoList(property){
-      property={"processName":"","starterId":"","orderby":"startTime desc","pageNumber":1,"pageSize":50};
-
+    getTodoList(property?:any){
       let body = new URLSearchParams();
+
+      if(property == null){
+        property={"processName":"","starterId":"","orderby":"startTime desc","pageNumber":1,"pageSize":50};
+      }
+
       body.set('___p', JSON.stringify(property));
       body.set('page', '1');
       body.set('rows','50');
