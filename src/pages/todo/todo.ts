@@ -23,10 +23,6 @@ export class TodoPage {
       console.log(list);
       this.todolist=list;
     })
-
-    // console.log(navParams.get('todolist'))
-    // this.todolist= navParams.get('todolist');
-
   }
 
 
@@ -57,13 +53,12 @@ export class TodoPage {
    * @param refresher
    */
   doRefresh(refresher){
-    console.log('Begin async operation', refresher);
-
-    // 这边换成请求数据，请求成功后必须要有，refresher.complete();
-    setTimeout(() => {
-      console.log('Async operation has ended');
+    console.log('代办任务下拉刷新', refresher);
+    this.todoService.getTodoList({}).subscribe( list=>{
+      console.log("下拉刷新"+list);
+      this.todolist=list;
       refresher.complete();
-    }, 2000);
+    })
   }
 
 

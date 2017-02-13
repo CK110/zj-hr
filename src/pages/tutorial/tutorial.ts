@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController, MenuController, Slides} from 'ionic-angular';
-import {TabsPage} from "../tabs/tabs";
 import { Storage } from '@ionic/storage';
+import {LoginPage} from "../login/login";
 
 
 @Component({
@@ -19,7 +19,7 @@ export class TutorialPage {
   ) { }
 
   startApp() {
-    this.navCtrl.push(TabsPage).then(() => {
+    this.navCtrl.push(LoginPage).then(() => {
       this.storage.set('hasSeenTutorial', 'true');
     })
   }
