@@ -1,4 +1,95 @@
-<!--
-  1. 个人信息（基本组件）
-  2. 申请信息
--->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ taskInfo.taskName }}
+      <!--{{ taskInfo }}-->
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #EFEFF4;">
+  <ion-list>
+    <ion-item >
+      <ion-grid>
+        <ion-row>
+          <ion-col width-50 text-left>
+            <h6>NO:{{contract.formid}}</h6>
+          </ion-col>
+          <ion-col width-50 text-right>
+            <h6>续订劳动合同</h6>
+          </ion-col>
+        </ion-row>
+
+        <ion-row center style="border-top:1px dotted gray; padding: 8px">
+          <ion-col width-20>
+            <hr>
+            <div>
+              <img src="assets/icon/favicon.ico"  alt="头像" (click)="openPhoto(pic)"/>
+            </div>
+          </ion-col>
+          <ion-col style="padding-left: 10px">
+            <div width-50 text-left>
+              张三<br>
+              南京公司<br>
+              信息开发中心<br>
+              软件工程师
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="border-top:1px dotted gray;padding-top: 10px ">
+          <ion-col width-50 text-left><ion-badge color="secondary">状态</ion-badge></ion-col>
+          <ion-col width-50 text-right>
+            审批中-张晓亮
+            <button>
+              <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item >
+      <ion-row>
+        <ion-col text-left>前一合同到期日期</ion-col>
+        <ion-col text-right> 2017-01-01</ion-col>
+      </ion-row>
+    </ion-item >
+    <ion-item>
+      <ion-row>
+        <ion-col text-left>前一合同期限(年)</ion-col>
+        <ion-col text-right>3</ion-col>
+      </ion-row>
+    </ion-item>
+    <ion-item>
+      <ion-row>
+        <ion-col text-left>实际工作地点</ion-col>
+        <ion-col text-right>南京</ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item >
+      <ion-label>审批结果:</ion-label>
+      <ion-select [(ngModel)]="apvresult" >
+        <ion-option value="nes">同意</ion-option>
+        <ion-option value="n64">不同意,返回上一步</ion-option>
+        <ion-option value="ps">不同意,退回修改</ion-option>
+        <ion-option value="genesis">不批准</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item style="height: 130px;">
+      <ion-label>审批意见:</ion-label>
+      <ion-textarea rows="5" [(ngModel)]="apvrnote" ></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <div padding style="padding-top: 0px;padding-bottom: 8px">
+    <button ion-button block outline (click)="submit(approve)"  >提交</button>
+  </div>
+
+</ion-content>
+

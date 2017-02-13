@@ -31,7 +31,7 @@ export class TodoService {
     getTodoList(property?:any){
       let body = new URLSearchParams();
 
-      if(property == null){
+      if(property == undefined){
         property={"processName":"","starterId":"","orderby":"startTime desc","pageNumber":1,"pageSize":50};
       }
 

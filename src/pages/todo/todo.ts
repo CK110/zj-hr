@@ -4,6 +4,7 @@ import {NavController, PopoverController, ModalController, NavParams} from 'ioni
 import {TodoDetailsPage} from "./todo-details";
 import {Todo, TodoService} from './todo.service';
 import {ProcessListPage} from "./processlist";
+import {ApproveContractPage} from "../hr/personnel/contract/approve/approvecontract";
 
 @Component({
   selector: 'page-todo',
@@ -19,7 +20,7 @@ export class TodoPage {
   constructor(public navCtrl: NavController,private todoService:TodoService,
               public popoverCtrl: PopoverController,public modalCtrl: ModalController,private navParams: NavParams) {
 
-    this.todoService.getTodoList({}).subscribe( list=>{
+    this.todoService.getTodoList().subscribe( list=>{
       console.log(list);
       this.todolist=list;
     })
@@ -41,7 +42,14 @@ export class TodoPage {
    * @param todo
    */
   openNavDetailsPage(todo) {
-    this.navCtrl.push(TodoDetailsPage, { todo: todo });
+    if(todo.processName == "续订劳动合同申请"){
+
+      this.navCtrl.push(ApproveContractPage, { taskid:  {"taskid":todo.taskId} });
+
+    }else{
+      this.navCtrl.push(TodoDetailsPage, { todo: todo });
+
+    }
 
     // let modal = this.modalCtrl.create(TodoDetailsPage, { todo: todo });
     // modal.present();

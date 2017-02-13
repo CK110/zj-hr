@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import {Http, RequestOptions, URLSearchParams} from "@angular/http";
+import {Http,URLSearchParams} from "@angular/http";
 import {SERVER_URL} from '../../providers/config'
 
 let LOGIIN_HREF = SERVER_URL+"/app/auth/login/login";
