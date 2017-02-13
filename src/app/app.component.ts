@@ -34,7 +34,7 @@ export class MyApp {
       if (hasSeenTutorial) {
         this.rootPage = LoginPage;
       } else {
-        this.rootPage = LoginPage;
+        this.rootPage = TutorialPage;
       }
       this.platformReady();
     })
