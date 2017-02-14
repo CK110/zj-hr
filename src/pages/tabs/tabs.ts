@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { TodoPage } from '../todo/todo';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
+import {NavController} from "ionic-angular";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -14,7 +15,11 @@ export class TabsPage {
   tab2Root: any = AboutPage;
   tab3Root: any = ContactPage;
 
-  constructor() {
+  constructor(public navCtrl:NavController) {
 
+  }
+
+  todo(){
+    this.navCtrl.push(TodoPage);
   }
 }

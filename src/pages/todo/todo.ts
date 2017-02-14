@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import {NavController, PopoverController, ModalController, NavParams} from 'ionic-angular';
+import {NavController, LoadingController} from 'ionic-angular';
 import {TodoDetailsPage} from "./todo-details";
 import {Todo, TodoService} from './todo.service';
-import {ProcessListPage} from "./processlist";
 import {ApproveContractPage} from "../hr/personnel/contract/approve/approvecontract";
+import {ProcessListPage} from "./processlist";
 
 @Component({
   selector: 'page-todo',
@@ -18,15 +18,18 @@ export class TodoPage {
 
 
   constructor(public navCtrl: NavController,private todoService:TodoService,
-              public popoverCtrl: PopoverController,public modalCtrl: ModalController,private navParams: NavParams) {
+              public loadingCtrl:LoadingController) {
+
+    let loading = this.loadingCtrl.create({
+    });
+    loading.present();
 
     this.todoService.getTodoList().subscribe( list=>{
       console.log(list);
       this.todolist=list;
+      loading.dismiss();
     })
   }
-
-
 
 
   /**
@@ -34,7 +37,6 @@ export class TodoPage {
    */
   processList(){
     this.navCtrl.push(ProcessListPage);
-
   }
 
   /**
@@ -49,10 +51,8 @@ export class TodoPage {
     }else{
       this.navCtrl.push(TodoDetailsPage, { todo: todo });
 
+      // this.navCtrl.parent.push(TodoDetailsPage, { todo: todo })
     }
-
-    // let modal = this.modalCtrl.create(TodoDetailsPage, { todo: todo });
-    // modal.present();
 
   }
 
@@ -62,12 +62,10 @@ export class TodoPage {
    */
   doRefresh(refresher){
     console.log('代办任务下拉刷新', refresher);
-    this.todoService.getTodoList({}).subscribe( list=>{
-      console.log("下拉刷新"+list);
+    this.todoService.getTodoList().subscribe( list=>{
+      console.log(list);
       this.todolist=list;
       refresher.complete();
     })
   }
-
-
 }
